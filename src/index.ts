@@ -25,7 +25,7 @@ Hooks.once('ready', () => {
 
     if (!game.user.isGM && this.getFlag('mondarth-core', 'isGhost')) {
       Mondarth.Logger.debug('Token is a ghost');
-      result = CONST.DOCUMENT_META_OWNERSHIP_LEVELS.NONE;
+      result = CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
     }
 
     return result;
