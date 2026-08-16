@@ -1,5 +1,6 @@
 import { MODULE_ID } from '@lib/constants';
 import Mondarth from '@lib/mondarth';
+import Tokens from '@lib/tokens';
 
 Mondarth.HookManager.registerHook('local', 'mondarth-core:test', () => {});
 
@@ -10,12 +11,8 @@ Hooks.once('init', async () => {
   globalThis.Mondarth = Mondarth;
   game.modules!.get(MODULE_ID)!.api = Mondarth;
 
-  // Announce
-  Mondarth.Logger.log('Mondarth (CORE) loaded');
-  Hooks.callAll('mondarth-core:Ready');
-});
+  Mondarth.tokens = Tokens;
 
-Hooks.once('ready', () => {
   if (!game.modules!.get('lib-wrapper')?.active && game.user?.isGM)
     ui.notifications?.error("Module XYZ requires the 'libWrapper' module. Please install and activate it.");
 
@@ -30,4 +27,8 @@ Hooks.once('ready', () => {
 
     return result;
   });
+
+  // Announce
+  Mondarth.Logger.log('Mondarth (CORE) loaded');
+  Hooks.callAll('mondarth-core:Ready');
 });
