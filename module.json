@@ -1,10 +1,10 @@
 {
   "id": "mondarth-core",
   "title": "Mondarth (Core)",
-  "version": "1.0.0",
+  "version": "0.6.1",
   "compatibility": {
-    "minimum": "12",
-    "verified": "12"
+    "minimum": "14",
+    "verified": "14"
   },
   "relationships": {
     "systems": [
@@ -16,28 +16,6 @@
     ]
   },
   "esmodules": ["dist/mondarth-core.js"],
-  "packs": [
-    {
-      "name": "core-docs",
-      "label": "Core Docs",
-      "path": "packs/core-docs",
-      "type": "JournalEntry",
-      "ownership": {
-        "PLAYER": "OBSERVER",
-        "ASSISTANT": "OWNER"
-      },
-      "flags": {}
-    }
-  ],
-  "packFolders": [
-    {
-      "name": "Mondarth",
-      "sorting": "a",
-      "packs": ["core-docs"],
-      "color": null,
-      "folders": []
-    }
-  ],
   "authors": [
     {
       "name": "Ulenar of Mondarth",
@@ -48,5 +26,11 @@
     }
   ],
   "description": "",
-  "flags": {}
+  "flags": {},
+  "url": "https://github.com/Mondarth/mondarth-core",
+  "readme": "https://github.com/Mondarth/mondarth-core/blob/master/README.md",
+  "bugs": "https://github.com/Mondarth/mondarth-core/issues",
+  "changelog": "https://github.com/Mondarth/mondarth-core/releases/latest",
+  "manifest": "https://github.com/Mondarth/mondarth-core/releases/latest/download/module.json",
+  "download": "https://github.com/Mondarth/mondarth-core/releases/download/v0.6.1/module.zip"
 }
