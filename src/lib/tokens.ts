@@ -74,6 +74,8 @@ Hooks.on('updateToken', async (tokenDoc, changes) => {
   // Only react to position changes (x or y in the changes diff).
   if (changes.x === undefined && changes.y === undefined) return;
 
+  if (!tokenDoc.isOwner) return;
+
   // Ignore our own mirrored updates.
   const pairKey = `${tokenDoc.id}`;
   if (_activeMirrors.has(pairKey)) return;
@@ -100,7 +102,7 @@ Hooks.on('updateToken', async (tokenDoc, changes) => {
   try {
     // V14: TokenDocument.update() broadcasts to all clients.
     // Using { animation: false } avoids double-animation jank.
-    await partner.update(updateData, { animation: false });
+    await partner.move(updateData, { animation: false });
   } finally {
     // Clean up the guard flag after the update settles.
     _activeMirrors.delete(partner.id);
