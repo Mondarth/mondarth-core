@@ -21,7 +21,7 @@ jobs:
       attestations: write
       id-token: write
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Extract version from tag without the v
       id: get-version
