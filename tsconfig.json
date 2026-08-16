@@ -1,0 +1,20 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "bundler",
+    "module": "esnext",
+    "target": "es2024",
+    "types": ["svelte", "@league-of-foundry-developers/foundry-vtt-types", "node", "vitest/importMeta"],
+    "strict": true,
+    "strictNullChecks": true,
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@lib/*": ["src/lib/*"],
+      "moduleJSON": ["module.json"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"]
+}

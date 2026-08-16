@@ -1,0 +1,50 @@
+name: Build and Deploy Docs
+on:
+  workflow_call:
+  push:
+    branches:
+    - main
+    paths:
+    - 'docs/**'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+concurrency:
+  group: generate-docs
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      attestations: write
+      id-token: write
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Extract version from tag without the v
+      id: get-version
+      run: echo "v=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+    - name: Patch version into docs configuration
+      id: sub_docs_release
+      run: sed -i "s/release\s+=.*/release = '${{steps.get-version.outputs.v}}/'" docs/conf.py
+
+    - name: Build Documentation
+      run: |
+        docker run --rm -v "${{ github.workspace }}/docs":/docs ghcr.io/ulenarofmondarth/sphinx-docs:latest make html
+        cd ./docs/_build/html
+        zip -r ${{ github.workspace }}/documentation-${{ github.ref_name }}.zip .
+
+    - name: Preserve Documentation
+      uses: actions/upload-artifact@v4
+      with:
+        name: documentation-${{ github.ref_name}}
+        path: ${{ github.workspace }}/documentation-${{ github.ref_name }}.zip
+
+    - name: Deploy Documentation
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/_build/html

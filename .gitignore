@@ -1,0 +1,10 @@
+.idea
+.DS_Store
+.vite-cache/
+.vscode/**/*
+!.vscode/extensions.json
+_build/
+dist/
+node_modules/
+.foundryvtt/data/
+.foundryvtt/secrets.json

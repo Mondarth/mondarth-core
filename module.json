@@ -7,13 +7,6 @@
     "verified": "12"
   },
   "relationships": {
-    "requires": [
-      {
-        "id": "monks-enhanced-journal",
-        "type": "module",
-        "compatibility": {}
-      }
-    ],
     "systems": [
       {
         "id": "dnd5e",
@@ -22,6 +15,29 @@
       }
     ]
   },
+  "esmodules": ["dist/mondarth-core.js"],
+  "packs": [
+    {
+      "name": "core-docs",
+      "label": "Core Docs",
+      "path": "packs/core-docs",
+      "type": "JournalEntry",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Mondarth",
+      "sorting": "a",
+      "packs": ["core-docs"],
+      "color": null,
+      "folders": []
+    }
+  ],
   "authors": [
     {
       "name": "Ulenar of Mondarth",
@@ -30,5 +46,7 @@
       "discord": "ulenarofmondarth",
       "flags": {}
     }
-  ]
+  ],
+  "description": "",
+  "flags": {}
 }
