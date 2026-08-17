@@ -29,7 +29,7 @@ jobs:
 
     - name: Patch version into docs configuration
       id: sub_docs_release
-      run: sed -i "s/release\s+=.*/release = '${{steps.get-version.outputs.v}}/'" docs/conf.py
+      run: sed -i "s/release[[:space:]]*=.*/release = '${{steps.get-version.outputs.v}}/'" docs/conf.py
 
     - name: Build Documentation
       run: |
